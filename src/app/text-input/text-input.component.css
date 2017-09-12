@@ -1,0 +1,29 @@
+.form-group {
+  margin-top:5px;
+  font-family: Roboto;
+  display:flex;
+  flex-direction: column;
+}
+
+label {
+  color: #555555;
+  font-weight: normal;
+  font-size: 0.7em;
+}
+
+input {
+  color: #333333;
+  font-size: 0.6em;
+  padding: 5px;
+  border: 1px solid #444444;
+
+  transition: ease-in 150ms;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid #027095;
+  box-shadow: 0 0 2px #027095;
+
+  transition: ease-in 150ms;
+}
