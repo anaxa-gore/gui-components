@@ -17,17 +17,23 @@ export class TextInputComponent implements OnInit {
   private group: FormGroup;
 
   constructor(private fb: FormBuilder) {
-    this.createForm();
+
   }
 
-  createForm() {
+  private createForm() {
     this.group = this.fb.group({
       value: this.init
     });
   }
 
+  getGroup() {
+    return this.group;
+  }
+
   ngOnInit() {
-    this.group.setValue({'value': this.init});
+    this.createForm();
+
+    this.group.setValue({'value': (this.init ? this.init : '')});
     this.group.get('value').valueChanges.debounceTime(500).subscribe(val => {
       this.out.emit(val);
     });
