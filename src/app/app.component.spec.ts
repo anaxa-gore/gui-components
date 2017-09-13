@@ -1,12 +1,16 @@
-import { TestBed, async } from '@angular/core/testing';
+import {TestBed, async} from '@angular/core/testing';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {TextInputComponent} from "./text-input/text-input.component";
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule],
       declarations: [
-        AppComponent
+        AppComponent,
+        TextInputComponent
       ],
     }).compileComponents();
   }));
