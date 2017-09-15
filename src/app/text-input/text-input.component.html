@@ -1,4 +1,6 @@
 <div [formGroup]="group" class="form-group">
-  <label>{{label}}</label>
-  <input placeholder={{placeholder}} formControlName="value">
+  <label>{{label}}<span class="mandatory">{{required ? '*' : ''}}</span></label>
+  <input placeholder={{placeholder}} formControlName="value" name="value">
+
+  <gui-errors-displayer [formGroup]="group"></gui-errors-displayer>
 </div>

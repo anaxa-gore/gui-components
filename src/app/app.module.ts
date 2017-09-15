@@ -5,11 +5,15 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { TextInputComponent } from './text-input/text-input.component';
+import { ValidableInputComponent } from './validable-input/validable-input.component';
+import { ErrorsDisplayerComponent } from './errors-displayer/errors-displayer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TextInputComponent
+    TextInputComponent,
+    ValidableInputComponent,
+    ErrorsDisplayerComponent
   ],
   imports: [
     BrowserModule,

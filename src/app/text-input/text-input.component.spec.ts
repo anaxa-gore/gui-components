@@ -17,7 +17,7 @@ describe('TextInputComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TextInputComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    fixture.detectChanges();    // Met à jour la vue
   });
 
   it('should create', () => {
@@ -42,7 +42,7 @@ describe('TextInputComponent', () => {
     component.getGroup().setValue({'value': 'coco'});
   });
 
-  it('shoud not notify value change if interval is less than 500 ms', (done: DoneFn) => {
+  it('shoud NOT notify value change if interval is less than 500 ms', (done: DoneFn) => {
     component.out.subscribe((d: string) => {
       expect(d).toBe('coucou');
       done();
@@ -76,5 +76,24 @@ describe('TextInputComponent', () => {
         component.getGroup().setValue({'value': 'yo'}); // Notifié
       }, 250);
     }, 600);
+  });
+
+  it('shoud NOT notify value change if value is invalid', (done: DoneFn) => {
+    let called = false;
+
+    component.out.subscribe((d: string) => {
+      called = true;
+      done();
+    });
+
+    component.required = true;
+    component.getGroup().setValue({'value': ''});
+
+    // Si au bout de 200ms on n'est pas passé dans le callback => on se désabonne
+    setTimeout(() => {
+      component.out.unsubscribe();
+      expect(called).toBe(false);
+      done();
+    }, 200);
   });
 });
