@@ -1,5 +1,7 @@
 <h1>
-  {{title}}
-  <gui-text-input [placeholder]="toto" [init]="'bonjour'" (out)="dataChange($event)" [label]="'Test'"></gui-text-input>
-  <gui-text-input [placeholder]="toto" [init]="'yo man'" (out)="dataChange($event)" [label]="'Essai pour voir'"></gui-text-input>
+  <div>{{title}}</div>
+  <div i18n>Cool</div>
 </h1>
+<gui-text-input [placeholder]="toto" [init]="'bonjour'" (out)="dataChange($event)" [label]="'Test'"></gui-text-input>
+<gui-text-input [placeholder]="toto" [init]="'yo man'" (out)="dataChange($event)"
+                [label]="'Essai pour voir'"></gui-text-input>
