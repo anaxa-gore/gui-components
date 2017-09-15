@@ -1,0 +1,10 @@
+.form-errors {
+  color: red;
+  font-size: 0.7em;
+  text-align: right;
+
+  /* Positionné par rapport au form-group pour ne pas générer de décalage du formulaire lors de l'affichage des erreurs */
+  position: absolute;
+  right: 0;
+  bottom: calc(-0.7em - 8px);
+}
