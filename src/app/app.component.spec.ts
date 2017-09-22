@@ -2,7 +2,8 @@ import {TestBed, async} from '@angular/core/testing';
 
 import {AppComponent} from './app.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {TextInputComponent} from "./text-input/text-input.component";
+import {TextInputComponent} from './text-input/text-input.component';
+import {ErrorsDisplayerComponent} from './errors-displayer/errors-displayer.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -10,7 +11,8 @@ describe('AppComponent', () => {
       imports: [ReactiveFormsModule],
       declarations: [
         AppComponent,
-        TextInputComponent
+        TextInputComponent,
+        ErrorsDisplayerComponent
       ],
     }).compileComponents();
   }));
