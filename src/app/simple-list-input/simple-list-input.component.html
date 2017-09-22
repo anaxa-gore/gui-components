@@ -1,0 +1,12 @@
+<div formGroup="group" class="form-group">
+  <label>{{label}}<span class="mandatory" *ngIf="required">*</span></label>
+  <div class="input" (click)="displayList = !displayList">
+    Toto
+  </div>
+  <div class="panel" *ngIf="displayList">
+    <gui-text-input placeholder="Entrez votre recherche"></gui-text-input>
+    <div class="list">
+      <div *ngFor="let item of items" class="list-item">{{item}}</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,63 @@
+.form-group {
+  margin-top: 5px;
+  font-family: Roboto, serif;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-size: 0.9em;
+}
+
+label {
+  color: #777777;
+  font-weight: normal;
+}
+
+label > .mandatory {
+  color: red;
+}
+
+.input {
+  border: 1px solid #999999;
+  padding: 6px;
+  outline: none;
+  user-select: none;
+}
+
+.input:hover {
+  cursor: pointer;
+  border: 1px solid #0288ae;
+  transition: ease-in 150ms;
+}
+
+.panel {
+  z-index: 500;
+
+  background: white;
+  border: 1px solid #0288ae;
+  padding: 6px;
+
+  position: absolute;
+  top: calc(100% + 1px);
+}
+
+.list {
+  overflow-y: auto;
+  margin-top: 5px;
+  max-width: 100%;
+  max-height: 150px;
+}
+
+.list-item {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.list-item:nth-child(2n+1) {
+  background: rgba(2, 88, 174, 0.2);
+}
+
+.list-item:hover {
+  background: #0288ae;
+  color: white;
+}
+
