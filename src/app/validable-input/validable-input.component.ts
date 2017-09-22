@@ -38,7 +38,7 @@ export class ValidableInputComponent implements OnInit {
       result.push(Validators.minLength(this.minLength));
     }
     if (this.maxLength) {
-      result.push(Validators.min(this.maxLength));
+      result.push(Validators.maxLength(this.maxLength));
     }
     if (this.pattern) {
       result.push(Validators.pattern(this.pattern));
