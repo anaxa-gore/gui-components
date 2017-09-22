@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {TextInputComponent} from './text-input.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ErrorsDisplayerComponent} from '../errors-displayer/errors-displayer.component';
 
 describe('TextInputComponent', () => {
   let component: TextInputComponent;
@@ -10,7 +11,7 @@ describe('TextInputComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, ReactiveFormsModule],
-      declarations: [TextInputComponent]
+      declarations: [TextInputComponent, ErrorsDisplayerComponent]
     }).compileComponents();
   }));
 
@@ -19,6 +20,7 @@ describe('TextInputComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();    // Met à jour la vue
   });
+
 
   it('should create', () => {
     expect(component).toBeTruthy();
