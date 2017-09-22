@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ErrorsDisplayerComponent } from './errors-displayer.component';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 describe('ErrorsDisplayerComponent', () => {
   let component: ErrorsDisplayerComponent;
@@ -16,6 +17,9 @@ describe('ErrorsDisplayerComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ErrorsDisplayerComponent);
     component = fixture.componentInstance;
+    component.formGroup = new FormGroup({
+      name: new FormControl('', Validators.required)
+    });
     fixture.detectChanges();
   });
 
