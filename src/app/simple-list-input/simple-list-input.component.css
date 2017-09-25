@@ -31,13 +31,17 @@ label > .mandatory {
 
 .panel {
   z-index: 500;
+  position: absolute;
+
+  /** Afficher le panneau sous le champ + 1px */
+  top: calc(100% + 1px);
+  /** Liste de même largeur que le champ */
+  left: 0;
+  right:0;
 
   background: white;
   border: 1px solid #0288ae;
   padding: 6px;
-
-  position: absolute;
-  top: calc(100% + 1px);
 }
 
 .list {
@@ -71,6 +75,10 @@ label > .mandatory {
   cursor: pointer;
 }
 
-.clean-selected:hover {
+.clean-selected > .fa:hover {
   color: #0288ae;
+}
+
+.clean-selected > .fa-close:hover {
+  color: red;
 }

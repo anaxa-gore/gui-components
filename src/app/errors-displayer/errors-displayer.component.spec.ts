@@ -37,7 +37,7 @@ describe('ErrorsDisplayerComponent', () => {
     component.formGroup.get('name').setValue('2');
 
     // Pour utiliser tick, il faut nécessaire le fakeAsync
-    tick(500); // Ici on attend 300ms avant de checker car le refresh ne se fait que toutes les 300ms (cf. ngOnInità
+    tick(500); // Ici on attend 500ms avant de checker car le refresh ne se fait que toutes les 300ms (cf. ngOnInit
     fixture.detectChanges();
 
     expect(component.errorMessage).toEqual('La valeur doit être supérieure ou égale à 5.');

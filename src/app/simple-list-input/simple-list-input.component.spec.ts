@@ -1,6 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SimpleListInputComponent } from './simple-list-input.component';
+import {SimpleListInputComponent} from './simple-list-input.component';
+import {TextInputComponent} from '../text-input/text-input.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ErrorsDisplayerComponent} from '../errors-displayer/errors-displayer.component';
 
 describe('SimpleListInputComponent', () => {
   let component: SimpleListInputComponent;
@@ -8,9 +11,14 @@ describe('SimpleListInputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SimpleListInputComponent ]
+      imports: [FormsModule, ReactiveFormsModule],
+      declarations: [
+        SimpleListInputComponent,
+        TextInputComponent,
+        ErrorsDisplayerComponent
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

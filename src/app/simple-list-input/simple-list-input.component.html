@@ -1,16 +1,21 @@
-<div formGroup="group" class="form-group">
+<div [formGroup]="group" class="form-group">
+  <!-- Le champ affiché -->
   <label>{{label}}<span class="mandatory" *ngIf="required">*</span></label>
-  <div class="input" (click)="displayList = !displayList">
-    {{selectedValue ? selectedValue : ' - '}}
+  <div class="input" (click)="changeListDisplay()">
+    {{group.get('value').value ? group.get('value').value : '-'}}
   </div>
+
+  <!-- La liste de valeurs -->
   <div class="panel" *ngIf="displayList">
     <gui-text-input placeholder="Entrez votre recherche"></gui-text-input>
     <div class="list">
       <div *ngFor="let item of items" class="list-item" (click)="selectValue(item); displayList = false;">{{item}}</div>
     </div>
   </div>
+
+  <!-- Les boutons en surimpression -->
   <div class="clean-selected">
     <div class="fa fa-close" *ngIf="selectedValue" (click)="selectValue(null)"></div>
-    <div class="fa fa-angle-down"></div>
+    <div class="fa fa-angle-down" (click)="changeListDisplay()"></div>
   </div>
 </div>
