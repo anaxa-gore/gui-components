@@ -2,6 +2,7 @@
   <div>{{title}}</div>
   <div i18n>Cool</div>
 </h1>
-<gui-text-input placeholder="Toto" init="bonjour" (out)="dataChange($event)" label="Test" required="true" minLength="3"
-                max="2"></gui-text-input>
-<gui-text-input placeholder="Yo" (out)="dataChange($event)" label="Essai pour voir" pattern="[a-z]"></gui-text-input>
+<gui-text-input placeholder="Toto" init="bonjour" (out)="dataChange($event)" label="Test" required="true" maxLength="10"
+                min="20"></gui-text-input>
+<gui-simple-list-input label="Hello" required="true"></gui-simple-list-input>
+<gui-text-input placeholder="Yo" (out)="dataChange($event)" label="Essai pour voir" pattern="[a-z]+"></gui-text-input>
