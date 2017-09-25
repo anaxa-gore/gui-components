@@ -1,8 +1,18 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {async, ComponentFixture, discardPeriodicTasks, fakeAsync, TestBed, tick} from '@angular/core/testing';
 
 import {TextInputComponent} from './text-input.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ErrorsDisplayerComponent} from '../errors-displayer/errors-displayer.component';
+import {By} from '@angular/platform-browser';
+import {Component} from '@angular/core';
+
+@Component({
+  selector: 'gui-input-wrapper',
+  template: '<gui-text-input [init]="init"></gui-text-input>'
+})
+class InputWrapperComponent {
+  init: string;
+}
 
 describe('TextInputComponent', () => {
   let component: TextInputComponent;
@@ -11,7 +21,11 @@ describe('TextInputComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [FormsModule, ReactiveFormsModule],
-      declarations: [TextInputComponent, ErrorsDisplayerComponent]
+      declarations: [
+        TextInputComponent,
+        InputWrapperComponent,
+        ErrorsDisplayerComponent
+      ]
     }).compileComponents();
   }));
 
@@ -98,4 +112,23 @@ describe('TextInputComponent', () => {
       done();
     }, 200);
   });
+
+  it('shoud update value if init value changed', fakeAsync(() => {
+    const wFixture = TestBed.createComponent(InputWrapperComponent);
+    expect(wFixture.componentInstance).toBeDefined();
+    expect(wFixture.componentInstance.init).toBeUndefined();
+
+    const input = wFixture.debugElement.query(By.css('input')).nativeElement;
+
+    wFixture.componentInstance.init = 'toto';
+    wFixture.detectChanges();
+    expect((input as HTMLInputElement).value).toEqual('toto');
+
+    wFixture.componentInstance.init = 'titi';
+    wFixture.detectChanges();
+    expect((input as HTMLInputElement).value).toEqual('titi');
+
+    // On annule les tâches de fond (dues au valueChanges)
+    discardPeriodicTasks();
+  }));
 });
