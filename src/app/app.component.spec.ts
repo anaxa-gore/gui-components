@@ -4,6 +4,7 @@ import {AppComponent} from './app.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {TextInputComponent} from './text-input/text-input.component';
 import {ErrorsDisplayerComponent} from './errors-displayer/errors-displayer.component';
+import {SimpleListInputComponent} from './simple-list-input/simple-list-input.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -12,6 +13,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         TextInputComponent,
+        SimpleListInputComponent,
         ErrorsDisplayerComponent
       ],
     }).compileComponents();

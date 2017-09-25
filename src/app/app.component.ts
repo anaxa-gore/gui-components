@@ -9,9 +9,14 @@ import {Observable} from 'rxjs/Observable';
 export class AppComponent implements OnInit {
   title = 'gui works!';
   toto = 'my dude';
+  myVal = '';
 
-  dataChange(val: string) {
+  dataChange(val: string): void {
     console.log('valeur en top = ', val);
+  }
+
+  listChanged(val: string): void {
+    this.myVal = val;
   }
 
   ngOnInit(): void {
