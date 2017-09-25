@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, Input, EventEmitter} from '@angular/core';
+import {Component, OnInit, Output, Input, EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import {ValidableInputComponent} from '../validable-input/validable-input.component';
@@ -8,7 +8,7 @@ import {ValidableInputComponent} from '../validable-input/validable-input.compon
   templateUrl: './text-input.component.html',
   styleUrls: ['./text-input.component.css']
 })
-export class TextInputComponent extends ValidableInputComponent implements OnInit {
+export class TextInputComponent extends ValidableInputComponent implements OnInit, OnChanges {
   @Input() init: string;
   @Input() placeholder: string;
   @Input() label: string;
@@ -43,5 +43,12 @@ export class TextInputComponent extends ValidableInputComponent implements OnIni
       .subscribe(val => {
         this.out.emit(val);
       });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const initChange = changes['init'];
+    if (initChange && !initChange.firstChange) {
+      this.group.get('value').setValue((changes['init'].currentValue));
+    }
   }
 }
