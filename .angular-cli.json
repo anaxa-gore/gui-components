@@ -20,7 +20,8 @@
       "prefix": "gui",
       "styles": [
         "styles.css",
-        "../node_modules/roboto-fontface/css/roboto/roboto-fontface.css"
+        "../node_modules/roboto-fontface/css/roboto/roboto-fontface.css",
+        "../node_modules/font-awesome/css/font-awesome.min.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
