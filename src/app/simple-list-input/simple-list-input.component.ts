@@ -9,10 +9,10 @@ import {ValidableInputComponent} from '../validable-input/validable-input.compon
 })
 export class SimpleListInputComponent extends ValidableInputComponent implements OnInit {
   @Input() label: string;
+  @Input() items: Array<string>;
   @Output() out: EventEmitter<string> = new EventEmitter();
 
   group: FormGroup;
-  items: Array<string> = ['Bonjour', 'Ca va', 'Pas de problème', 'Encore un coup', 'Blabla', 'Hey'];
 
   private displayList = false;
 
