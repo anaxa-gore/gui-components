@@ -4,5 +4,5 @@
 </h1>
 <gui-text-input placeholder="Toto" [init]="myVal" (out)="dataChange($event)" label="Test" required="true" maxLength="10"
                 min="20"></gui-text-input>
-<gui-simple-list-input label="Hello" required="true" (out)="listChanged($event)"></gui-simple-list-input>
+<gui-simple-list-input label="Hello" [items]="['one', 'two', 'three', 'a long item to see if the display is correct']" required="true" (out)="listChanged($event)"></gui-simple-list-input>
 <gui-text-input placeholder="Yo" (out)="dataChange($event)" label="Essai pour voir" pattern="[a-z]+"></gui-text-input>
