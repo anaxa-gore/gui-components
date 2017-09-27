@@ -42,5 +42,15 @@ describe('SimpleListInputComponent', () => {
     expect(items.length).toEqual(4);
   });
 
+  it('should display a delete cross when a value is selected', () => {
+    const cross = fixture.debugElement.query(By.css('.fa-close'));
+    expect(cross).toBeNull();
 
+    component.items = ['a', 'b', 'c', 'd'];
+    component.selectValue('a');
+
+    fixture.detectChanges();
+
+    expect(cross).toBeDefined();
+  });
 });

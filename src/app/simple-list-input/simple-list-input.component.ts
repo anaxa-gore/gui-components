@@ -12,9 +12,24 @@ export class SimpleListInputComponent extends ValidableInputComponent implements
   @Input() items: Array<string>;
   @Output() out: EventEmitter<string> = new EventEmitter();
 
-  group: FormGroup;
 
+  private group: FormGroup;
   private displayList = false;
+
+  @HostListener('keydown', ['$event'])
+  private keyDown(event: KeyboardEvent) {
+    if (event.keyCode === 40 && !this.displayList) {
+      this.displayList = true;
+    } else {
+
+    }
+  }
+
+  @HostListener('window:focus', ['$event.target'])
+  private focus(target: any) {
+    console.log(target.constructor);
+    this.displayList = false;
+  }
 
   // @HostListener('document:click') mouseClicked(evt) {
   //   console.log('hello');

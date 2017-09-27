@@ -23,7 +23,7 @@ label > .mandatory {
   user-select: none;
 }
 
-.input:hover {
+.input:hover, .input:focus {
   cursor: pointer;
   border: 1px solid #0288ae;
   transition: ease-in 150ms;

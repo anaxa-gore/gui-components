@@ -1,7 +1,7 @@
 <div [formGroup]="group" class="form-group">
   <!-- Le champ affiché -->
   <label>{{label}}<span class="mandatory" *ngIf="required">*</span></label>
-  <div class="input" (click)="changeListDisplay()">
+  <div class="input" (click)="changeListDisplay()" tabindex="0">  <!-- tabindex : rend le composant focusable -->
     {{group.get('value').value ? group.get('value').value : '-'}}
   </div>
 
@@ -15,7 +15,7 @@
 
   <!-- Les boutons en surimpression -->
   <div class="clean-selected">
-    <div class="fa fa-close" *ngIf="selectedValue" (click)="selectValue(null)"></div>
+    <div class="fa fa-close" *ngIf="group.get('value').value" (click)="selectValue(null)"></div>
     <div class="fa fa-angle-down" (click)="changeListDisplay()"></div>
   </div>
 </div>
