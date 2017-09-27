@@ -39,17 +39,19 @@ export class SimpleListInputComponent extends ValidableInputComponent implements
   @HostListener('keydown', ['$event'])
   private keyDown(event: KeyboardEvent) {
     if (event.keyCode === 40 && !this.displayList) {
+      // flèche bas
       this.displayList = true;
-    } else {
-
+    } else if (event.keyCode === 27) {
+      // échap
+      this.displayList = false;
     }
   }
 
-  @HostListener('window:focus', ['$event.target'])
-  private focus(target: any) {
-    console.log(target.constructor);
-    this.displayList = false;
-  }
+  // @HostListener('window:focus', ['$event.target'])
+  // private focus(target: any) {
+  //   console.log(target.constructor);
+  //   this.displayList = false;
+  // }
 
   // @HostListener('document:click') mouseClicked(evt) {
   //   console.log('hello');
