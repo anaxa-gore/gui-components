@@ -69,4 +69,8 @@ export class SimpleListInputComponent extends ValidableInputComponent implements
   selectValue(item: string): void {
     this.group.get('value').setValue(item);
   }
+
+  getGroup(): FormGroup {
+    return this.group;
+  }
 }

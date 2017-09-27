@@ -53,4 +53,18 @@ describe('SimpleListInputComponent', () => {
 
     expect(cross).toBeDefined();
   });
+
+  it('should clean the selected value when a click is performed on the cross', () => {
+    component.items = ['a', 'b', 'c', 'd'];
+    component.selectValue('a');
+
+    fixture.detectChanges();
+    expect(component.getGroup().get('value').value).toEqual('a');
+
+    const cross = fixture.debugElement.query(By.css('.fa-close'));
+    cross.triggerEventHandler('click', cross);
+
+    fixture.detectChanges();
+    expect(component.getGroup().get('value').value).toBeNull();
+  });
 });
