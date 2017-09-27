@@ -1,11 +1,30 @@
-import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
+import {
+  Component, EventEmitter, HostListener, Input, OnInit, Output, Pipe, PipeTransform,
+  Renderer2
+} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ValidableInputComponent} from '../validable-input/validable-input.component';
+
+@Pipe({
+  name: 'filter'
+})
+export class FilterPipe implements PipeTransform {
+  transform(values: any[], filter: string) {
+    if (filter === null || filter === undefined) {
+      return values;
+    }
+
+    return values.filter((val) => {
+      return val.indexOf(filter) !== -1;
+    });
+  }
+}
 
 @Component({
   selector: 'gui-simple-list-input',
   templateUrl: './simple-list-input.component.html',
-  styleUrls: ['./simple-list-input.component.css']
+  styleUrls: ['./simple-list-input.component.css'],
+
 })
 export class SimpleListInputComponent extends ValidableInputComponent implements OnInit {
   @Input() label: string;
@@ -13,6 +32,7 @@ export class SimpleListInputComponent extends ValidableInputComponent implements
   @Output() out: EventEmitter<string> = new EventEmitter();
 
 
+  private filterValue: string;
   private group: FormGroup;
   private displayList = false;
 
@@ -36,7 +56,7 @@ export class SimpleListInputComponent extends ValidableInputComponent implements
   // }
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private renderer: Renderer2) {
     super();
   }
 
@@ -60,6 +80,10 @@ export class SimpleListInputComponent extends ValidableInputComponent implements
    */
   changeListDisplay() {
     this.displayList = !this.displayList;
+  }
+
+  filterList(val: string): void {
+    this.filterValue = val;
   }
 
   /**

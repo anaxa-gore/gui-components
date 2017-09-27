@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { TextInputComponent } from './text-input/text-input.component';
 import { ValidableInputComponent } from './validable-input/validable-input.component';
 import { ErrorsDisplayerComponent } from './errors-displayer/errors-displayer.component';
-import { SimpleListInputComponent } from './simple-list-input/simple-list-input.component';
+import {FilterPipe, SimpleListInputComponent} from './simple-list-input/simple-list-input.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,8 @@ import { SimpleListInputComponent } from './simple-list-input/simple-list-input.
     TextInputComponent,
     ValidableInputComponent,
     ErrorsDisplayerComponent,
-    SimpleListInputComponent
+    SimpleListInputComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
