@@ -1,28 +1,23 @@
 .form-group {
   margin-top: 5px;
-  font-family: Roboto;
+  font-family: Roboto, sans-serif;
   display: flex;
   flex-direction: column;
   position: relative;
   font-size: 0.9em;
 }
 
-label {
-  color: #777777;
-  font-weight: normal;
-}
-
 label > .mandatory {
   color: red;
 }
 
-input {
-  color: #333333;
-  padding: 6px;
-  border: 1px solid #999999;
+/*input {*/
+  /*color: #333333;*/
+  /*padding: 6px;*/
+  /*border: 1px solid #999999;*/
 
-  transition: ease-in 150ms;
-}
+  /*transition: ease-in 150ms;*/
+/*}*/
 
 input.ng-invalid {
   border: 1px solid red;

@@ -35,7 +35,8 @@ export class TextInputComponent extends ValidableInputComponent implements OnIni
     this.createForm();
 
     this.group.setValue({'value': (this.init ? this.init : '')});
-    this.group.get('value').valueChanges
+    this.group.get('value')
+      .valueChanges
       .debounceTime(500)
       .filter(val => {
         return this.group.valid;
