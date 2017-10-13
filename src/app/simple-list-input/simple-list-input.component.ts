@@ -1,6 +1,5 @@
 import {
-  Component, EventEmitter, HostListener, Input, OnInit, Output, Pipe, PipeTransform,
-  Renderer2
+  Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, Pipe, PipeTransform
 } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ValidableInputComponent} from '../validable-input/validable-input.component';
@@ -24,7 +23,6 @@ export class FilterPipe implements PipeTransform {
   selector: 'gui-simple-list-input',
   templateUrl: './simple-list-input.component.html',
   styleUrls: ['./simple-list-input.component.css'],
-
 })
 export class SimpleListInputComponent extends ValidableInputComponent implements OnInit {
   @Input() label: string;
@@ -38,12 +36,15 @@ export class SimpleListInputComponent extends ValidableInputComponent implements
 
   @HostListener('keydown', ['$event'])
   private keyDown(event: KeyboardEvent) {
-    if (event.keyCode === 40 && !this.displayList) {
-      // flèche bas
-      this.displayList = true;
-    } else if (event.keyCode === 27) {
-      // échap
-      this.displayList = false;
+    switch (event.keyCode) {
+      case 40:
+        this.processDownKey();
+        break;
+      case 27:
+        this.processEscapeKey();
+        break;
+      default:
+      // On s'en fout
     }
   }
 
@@ -58,7 +59,7 @@ export class SimpleListInputComponent extends ValidableInputComponent implements
   // }
 
 
-  constructor(private fb: FormBuilder, private renderer: Renderer2) {
+  constructor(private fb: FormBuilder, private el: ElementRef) {
     super();
   }
 
@@ -67,7 +68,8 @@ export class SimpleListInputComponent extends ValidableInputComponent implements
       value: ['']
     });
 
-    this.group.get('value').valueChanges
+    this.group.get('value')
+      .valueChanges
       .debounceTime(500)
       .filter(val => {
         return this.group.valid;
@@ -75,16 +77,30 @@ export class SimpleListInputComponent extends ValidableInputComponent implements
       .subscribe(val => {
         this.out.emit(val);
       });
+
+    // Observable.fromEvent(this.el.nativeElement, 'keydown')
+    //   .filter((evt: KeyboardEvent) => {
+    //     return evt.keyCode === 27 || evt.keyCode === 40;
+    //   })
+    //   .subscribe((evt: KeyboardEvent) => {
+    //     if()
+    //   });
   }
 
   /**
    * Affichage / masquage de la liste de valeurs.
+   * @param display Si <code>true/false</code>, force l'affichage ou le masquage. Sinon, inverse la visibilité.
    */
-  changeListDisplay() {
+  changeListDisplay(display?: boolean): void {
     this.displayList = !this.displayList;
+
+    // Si on masque => On supprime le filtrage sur la liste
+    if (!this.displayList) {
+      this.filterList();
+    }
   }
 
-  filterList(val: string): void {
+  filterList(val?: string): void {
     this.filterValue = val;
   }
 
@@ -99,4 +115,19 @@ export class SimpleListInputComponent extends ValidableInputComponent implements
   getGroup(): FormGroup {
     return this.group;
   }
+
+  private processDownKey(): void {
+    if (!this.displayList) {
+      this.changeListDisplay(true);
+    } else {
+      console.log('down');
+      const element: HTMLElement = this.el.nativeElement;
+      // element.getElementsByClassName('list-item').item(2).('hover', 'true');
+    }
+  }
+
+  private processEscapeKey(): void {
+    this.changeListDisplay(false);
+  }
 }
+

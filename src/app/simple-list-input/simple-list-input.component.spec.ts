@@ -1,6 +1,6 @@
 import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 
-import {SimpleListInputComponent} from './simple-list-input.component';
+import {FilterPipe, SimpleListInputComponent} from './simple-list-input.component';
 import {TextInputComponent} from '../text-input/text-input.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ErrorsDisplayerComponent} from '../errors-displayer/errors-displayer.component';
@@ -16,7 +16,8 @@ describe('SimpleListInputComponent', () => {
       declarations: [
         SimpleListInputComponent,
         TextInputComponent,
-        ErrorsDisplayerComponent
+        ErrorsDisplayerComponent,
+        FilterPipe
       ]
     })
       .compileComponents();
