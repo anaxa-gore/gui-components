@@ -1,8 +1,12 @@
 import {
-  Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, Pipe, PipeTransform
+  AfterViewChecked,
+  AfterViewInit,
+  Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, Pipe, PipeTransform, ViewChild,
+  ViewContainerRef
 } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ValidableInputComponent} from '../validable-input/validable-input.component';
+import {TextInputComponent} from '../text-input/text-input.component';
 
 @Pipe({
   name: 'filter'
@@ -29,10 +33,20 @@ export class SimpleListInputComponent extends ValidableInputComponent implements
   @Input() items: Array<string>;
   @Output() out: EventEmitter<string> = new EventEmitter();
 
-
   private filterValue: string;
   private group: FormGroup;
   private displayList = false;
+
+  /**
+   * Le setter sur le ViewChild est appelé à chaque fois que le composant est créé, donc en l'occurence à chaque fois
+   * que le ngIf passe à true !
+   */
+  @ViewChild('searchField')
+  set searchField(inputSearch: TextInputComponent) {
+    if (inputSearch != null) {
+      inputSearch.focus();
+    }
+  }
 
   @HostListener('keydown', ['$event'])
   private keyDown(event: KeyboardEvent) {
@@ -92,7 +106,7 @@ export class SimpleListInputComponent extends ValidableInputComponent implements
    * @param display Si <code>true/false</code>, force l'affichage ou le masquage. Sinon, inverse la visibilité.
    */
   changeListDisplay(display?: boolean): void {
-    this.displayList = !this.displayList;
+    this.displayList = (display != null) ? display : !this.displayList;
 
     // Si on masque => On supprime le filtrage sur la liste
     if (!this.displayList) {

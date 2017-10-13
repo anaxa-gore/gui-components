@@ -7,7 +7,7 @@
 
   <!-- La liste de valeurs -->
   <div class="panel" *ngIf="displayList">
-    <gui-text-input placeholder="Entrez votre recherche" (out)="filterList($event)"></gui-text-input>
+    <gui-text-input #searchField placeholder="Entrez votre recherche" (out)="filterList($event)"></gui-text-input>
     <div class="list">
       <div *ngFor="let item of items | filter:filterValue" class="list-item" tabindex="0"
            (click)="selectValue(item); displayList = false;">{{item}}

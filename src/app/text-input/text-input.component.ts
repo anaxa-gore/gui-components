@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, Input, EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, OnInit, Output, Input, EventEmitter, OnChanges, SimpleChanges, ElementRef} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import {ValidableInputComponent} from '../validable-input/validable-input.component';
@@ -16,7 +16,7 @@ export class TextInputComponent extends ValidableInputComponent implements OnIni
 
   private group: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private el: ElementRef) {
     super();
   }
 
@@ -29,6 +29,16 @@ export class TextInputComponent extends ValidableInputComponent implements OnIni
 
   getGroup() {
     return this.group;
+  }
+
+  /**
+   * Donne le focus au champ de recherche.
+   */
+  focus(): void {
+    const elements = this.el.nativeElement.getElementsByTagName('input');
+    if (elements && elements.length === 1) {
+      elements[0].focus();
+    }
   }
 
   ngOnInit() {
@@ -52,4 +62,5 @@ export class TextInputComponent extends ValidableInputComponent implements OnIni
       this.group.get('value').setValue((changes['init'].currentValue));
     }
   }
+
 }
